@@ -13,19 +13,9 @@
                             <img class="mb-3" src="{{ asset('assets/images/icons/background.svg') }}" alt="..." style="height: 48px" />
                             <h1 class="display-5 mb-0">Créez un compte</h1>
                             <div class="subheading-1 mb-5">afin de continuer sur Adminex</div>
-                        </div>
-                        <!--<?php 
-                            // Gestion d'affichage des alertes afin d'avertir l'utilisateur si des modifications ont été prises en compte (géré par la classe Toolbox)
-                            if(!empty($_SESSION['alert'])) {
-                                foreach($_SESSION['alert'] as $alert){
-                                    echo "<div class='alert ". $alert['type'] ."' role='alert'>
-                                        ".$alert['message']."
-                                    </div>";
-                                }
-                                unset($_SESSION['alert']);
-                            }
-                        ?>  -->                  
+                        </div>           
                         <!-- Formulaire d'inscription nouvel utilisateur-->
+                        {{ form(registerForm) }}                        
                         <!-- <form method="POST" action="validation_register_user">
                             <div class="row">
                                 <div class="col-sm-6 mb-4">
@@ -61,7 +51,6 @@
                                 <button type="submit" class="btn btn-primary" value="Inscription">Inscription</button>
                             </div>
                         </form> -->
-                        {{ form(registerForm) }}
                     </div>
                 </div>
             </div>

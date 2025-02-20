@@ -1,0 +1,40 @@
+{% extends 'logs.html.twig' %}
+
+{% block body %}
+    <!-- Main content container-->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8">
+                <div class="card card-raised shadow-10 mt-5 mt-xl-10 mb-4">
+                    <div class="card-body p-5">
+                        <!-- Authentification header with logo image-->
+                        <div class="text-center">
+                            <img class="mb-3" src="{{ asset('assets/images/icons/background.svg') }}" alt="..." style="height: 48px" />
+                            <h1 class="display-5 mb-0">Connectez-vous</h1>
+                            <div class="subheading-1 mb-5">pour continuer sur l'application</div>
+                        </div>
+                        {% if error %}
+                            <div class="alert"> {{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        <!-- Login submission form-->
+                        <form method="POST" action="{{ path('app_login') }}">
+                            <div class="mb-4">
+                                <input class="form-control form-control-lg w-100" type="email" id="email" name="_username" label="email" placeholder="E-mail" value="{{ last_email }}" required>
+                            </div>
+                            <div class="mb-4">
+                                <input class="form-control form-control-lg w-100" type="password" id="password" name="_password" label="Mot de passe" placeholder="Mot de passe" required>
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                <input type="hidden" name="_target_path" value="{{ path('app_dashboard') }}">   
+                                <a class="small fw-500 text-decoration-none" href="#">Mot de passe oublé ?</a>
+                                <button type="submit" class="btn btn-primary" value="Se connecter">Se connecter</button>
+                            </div>                     
+                        </form>
+                    </div> <!-- End card-body p-5 -->  
+                </div> <!-- End card card-raised shadow-10 mt-5 mt-xl-10 mb-4 -->  
+                <!-- Auth card message-->
+                <div class="text-center mb-5"><a class="small fw-500 text-decoration-none link-white" href="{{ path('app_register') }}">Besoin d'un compte ? Enregistre-vous !</a></div>
+            </div> <!-- End col-xxl-4 col-xl-5 col-lg-6 col-md-8 -->
+        </div> <!-- End row justify-content-center --> 
+    </div> <!-- End container --> 
+{% endblock %}

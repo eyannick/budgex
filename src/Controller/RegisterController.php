@@ -12,7 +12,8 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class RegisterController extends AbstractController
 {
-    #[Route('/register', name: 'register')]
+    // fonction permettant de gérer l'inscription d'un user sur le site
+    #[Route('/register', name: 'app_register')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
 

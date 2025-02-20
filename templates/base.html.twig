@@ -34,13 +34,13 @@
                 <!-- Drawer toggle button-->
                 <button class="btn btn-lg btn-icon order-1 order-lg-0" id="drawerToggle" href="javascript:void(0);"><i class="fas fa-bars"></i></button>
                 <!-- Navbar brand-->
-                <a class="navbar-brand me-auto" href="<?= URL; ?>accueil"><div class="text-uppercase font-monospace">Budgex</div></a>
+                <a class="navbar-brand me-auto" href="{{ path('app_home') }}"><div class="text-uppercase font-monospace">Budgex</div></a>
                 <!-- Navbar items-->
                 <div class="d-flex align-items-center mx-3 me-lg-0">
                     <!-- Navbar-->
                     <ul class="navbar-nav d-none d-lg-flex">
-                        <li class="nav-item"><a class="nav-link" href="<?= URL; ?>accueil">Accueil</a></li> 
-                        <li class="nav-item"><a class="nav-link" href="<?= URL; ?>account/dashboard">Tableau de bord</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_home') }}">Accueil</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_dashboard') }}">Tableau de bord</a></li>
                     </ul>
                     <!-- Navbar buttons-->
                     <div class="d-flex">
@@ -49,42 +49,51 @@
                             <button class="btn btn-lg btn-icon dropdown-toggle" id="dropdownMenuProfile" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user"></i></button>
                             <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="dropdownMenuProfile">
                                 <li>
-                                    <a class="dropdown-item" href="<?= URL; ?>login">
+                                    <a class="dropdown-item" href="{{ path('app_login') }}">
                                         <i class="fas fa-sign-out-alt leading-icon"></i>
                                         <div class="me-3">Se connecter</div>
                                     </a>
-                                </li>                            
+                                </li>
+                                {% if app.user %}                                                          
                                 <li>
-                                    <a class="dropdown-item" href="<?= URL; ?>account/profil">
+                                    <a class="dropdown-item" href="<{{ path('app_home') }}">
                                         <i class="fas fa-address-card leading-icon"></i>
                                         <div class="me-3">Profil</div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="<?= URL; ?>account/update-password">
+                                    <a class="dropdown-item" href="{{ path('app_update-password') }}">
                                         <i class="fas fa-solid fa-key leading-icon"></i>
                                         <div class="me-3">Modifier mot de passe</div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="<?= URL; ?>account/parameters">
+                                    <a class="dropdown-item" href="{{ path('app_home') }}">
                                         <i class="fas fa-cog leading-icon"></i>
                                         <div class="me-3">Paramètres</div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="<?= URL; ?>help">
+                                    <a class="dropdown-item" href="{{ path('app_home') }}">
                                         <i class="fas fa-question-circle leading-icon"></i>
                                         <div class="me-3">Aide</div>
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li>
-                                    <a class="dropdown-item" href="<?= URL; ?>account/logout">
+                                    <a class="dropdown-item" href="{{ path('app_logout') }}">
                                         <i class="fas fa-sign-out-alt leading-icon"></i>
                                         <div class="me-3">Se déconnecter</div>
                                     </a>                            
-                                </li>
+                                </li>  
+                                {% else %}
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_register') }}">
+                                        <i class="fas fa-sign-out-alt leading-icon"></i>
+                                        <div class="me-3">S'inscrire</div>
+                                    </a>
+                                </li>                                                                      
+                                {% endif %}                                
                             </ul>
                         </div>
                     </div>
@@ -335,7 +344,11 @@
                             <i class="material-icons text-muted">account_circle</i>
                             <div class="ms-3">
                                 <div class="caption">Utilisateur :</div>
+                                {% if app.user %}
+                                <div class="small fw-500">{{ "#{app.user.firstname} #{app.user.lastname}" }}</div>
+                                {% else %}
                                 <div class="small fw-500">Utilisateur</div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
